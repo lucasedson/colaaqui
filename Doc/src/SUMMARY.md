@@ -5,8 +5,6 @@
     - [Requisitos](./requirements.md)
     - [Arquitetura da Solução](./architecture.md)
 - [Guia de Desenvolvimento](./dev-guide/getting-started.md)
-    - [Configurando o Ambiente](./dev-guide/setup.md)
-    - [Rodando o Projeto](./dev-guide/running.md)
 - [Frontend (App)](./frontend/overview.md)
     - [Estrutura de Pastas](./frontend/structure.md)
     - [Componentes Principais](./frontend/components.md)
