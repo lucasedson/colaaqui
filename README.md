@@ -1,2 +1,2 @@
-# colaaqui
-Cola Aqui!
+# ColaAqui
+O ColaAqui é uma aplicação web moderna, minimalista e de código aberto, semelhante ao Pastebin, projetada para permitir que usuários compartilhem trechos de texto e código de forma rápida e eficiente, ou ser um CMS Headless.
