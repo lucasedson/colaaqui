@@ -16,5 +16,7 @@ Esta documentação serve como um guia central para desenvolvedores, detalhando 
 
 Para começar, explore as seguintes seções:
 
-- **[Visão Geral](./overview.md):** Entenda o propósito do projeto, suas funcionalidades e as tecnologias utilizadas.
-- **[Arquitetura da Solução](./architecture.md):** Mergulhe nos detalhes técnicos de como a plataforma foi construída para suportar ambos os casos de uso.
+- **[Visão Geral](./overview.html):** Entenda o propósito do projeto, suas funcionalidades e as tecnologias utilizadas.
+- **[Requisitos](./requirements.html):** Conheça os requisitos funcionais e não funcionais que guiam o desenvolvimento do ColaAqui.
+- **[Arquitetura da Solução](./architecture.html):** Mergulhe nos detalhes técnicos de como a plataforma foi construída para suportar ambos os casos de uso.
+

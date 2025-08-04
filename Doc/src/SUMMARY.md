@@ -2,6 +2,7 @@
 
 - [Introdução](./introduction.md)
     - [Visão Geral](./overview.md)
+    - [Requisitos](./requirements.md)
     - [Arquitetura da Solução](./architecture.md)
 - [Guia de Desenvolvimento](./dev-guide/getting-started.md)
     - [Configurando o Ambiente](./dev-guide/setup.md)
