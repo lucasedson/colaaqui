@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "localstack:start": "cd IAC/dev && sudo docker compose up -d && cd ../..",
+    "localstack:stop": "cd IAC/dev && sudo docker compose down && cd ../..",
+    "iac:dev": "aws --endpoint-url=http://localhost:4566 cloudformation create-stack --stack-name colaaqui-dev-stack --template-body file://IAC/dev/dev-template.yaml --profile localstack",
+    "iac:dev:view": "aws --endpoint-url=http://localhost:4566 cloudformation describe-stacks --stack-name colaaqui-dev-stack --profile localstack",
+    "iac:dev:delete": "aws --endpoint-url=http://localhost:4566 cloudformation delete-stack --stack-name colaaqui-dev-stack --profile localstack"
   },
   "keywords": [],
   "author": "",
