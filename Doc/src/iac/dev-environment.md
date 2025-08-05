@@ -4,6 +4,19 @@ Para simular o ambiente da AWS localmente, utilizamos o LocalStack, que nos forn
 
 A definição desses recursos é feita através de um template do AWS CloudFormation, garantindo que nosso ambiente local seja um espelho fiel do que teremos em produção.
 
+**Pré-requisitos**
+- Node.js.
+- pnpm instalado.
+
+- Docker e Docker Compose instalados e em execução.
+
+- AWS CLI instalado e configurado com um perfil chamado localstack.
+```bash
+aws configure --profile localstack
+```
+
+
+
 ### 1. Configurando o LocalStack com Docker Compose
 O LocalStack será orquestrado pelo Docker Compose.
 Arquivo: `/IAC/dev/docker-compose.yaml`
@@ -28,9 +41,16 @@ volumes:
 **Para iniciar o LocalStack, execute o seguinte comando:**
 
 ```bash
+pnpm run localstack:start
+```
+
+**Alternativamente utilize o seguinte comando:**
+```bash
 cd IAC/dev && docker-compose up -d
 ```
 Isso irá iniciar, em segundo plano, o LocalStack e os serviços simulados da AWS, como S3, DynamoDB, etc.
+
+----
 
 #### Template do CloudFormation para Desenvolvimento
 Este template define todos os recursos da AWS necessários para a aplicação rodar. Crie este arquivo dentro da sua pasta /IAC.
@@ -76,7 +96,7 @@ Resources:
   FrontendBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      Bucket: !Ref FrontendBucket
+      Bucket: !Ref **FrontendBucket**
       PolicyDocument:
         Statement:
           - Sid: PublicReadGetObject
@@ -111,21 +131,43 @@ Outputs:
 ### 3. Aplicando o Template no LocalStack
 Para que o LocalStack crie os recursos definidos no dev-template.yaml, você precisará do AWS CLI instalado. O comando a seguir diz para o AWS CLI se comunicar com o nosso LocalStack em vez da AWS real.
 
-Execute este comando na raiz do projeto via bash:
+Execute este comando na raiz do projeto para configurar o AWS CLI para se comunicar com o LocalStack:
 
 ```bash
-aws --endpoint-url=http://localhost:4566 cloudformation create-stack \
-  --stack-name colaaqui-dev-stack \
-  --template-body file://IAC/dev-template.yaml
+aws configure --profile localstack --endpoint-url=http://localhost:4566
 ```
 
-Alternativamente, use o `pnpm run iac:dev` para executar o comando acima.
+**Agora, use o pnpm para criar o stack:**
+
+```bash
+pnpm run iac:dev
+```
+
+Alternativamente, use o seguinte comando:
+
+```bash
+aws --endpoint-url=http://localhost:4566 cloudformation create-stack --stack-name colaaqui-dev-stack --template-body file://IAC/dev/dev-template.yaml --profile localstack
+```
 
 **O LocalStack irá criar os recursos da AWS, conforme definido no template.**
 
 ----
 
 **Para verificar se os recursos foram criados:**
+
+**Verificar a stack criada:**
+
+```bash
+pnpm run iac:view
+```
+
+Alternativamente, use o seguinte comando:
+
+```Bash
+aws --endpoint-url=http://localhost:4566 cloudformation describe-stacks --stack-name colaaqui-dev-stack --profile localstack
+```
+
+
 
 **Listar buckets S3:**
 
@@ -155,3 +197,19 @@ Saída esperada:
 }
 ```
 Com isso, seu ambiente de desenvolvimento local está configurado e documentado! Qualquer desenvolvedor que entrar no projeto pode seguir estes passos para ter uma réplica funcional da infraestrutura da AWS rodando em sua própria máquina.
+
+
+### 4. Deletando o ambiente de desenvolvimento
+
+Para desfazer a Stack do Cloudformation, use o seguinte comando:
+
+```bash
+pnpm run iac:dev:delete
+```
+
+
+Para parar o LocalStack, use o seguinte comando:
+
+```bash
+pnpm run localstack:stop
+```
