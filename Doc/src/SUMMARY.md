@@ -13,4 +13,5 @@
     - [Lógica de Negócio](./backend/business-logic.md)
 - [Infraestrutura (IAC)](./iac/overview.md)
     - [Recursos na AWS](./iac/aws-resources.md)
+    - [Ambiente de Desenvolvimento](./iac/dev-environment.md)
 - [Deploy](./deploy/process.md)
