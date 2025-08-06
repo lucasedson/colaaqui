@@ -1,5 +1,5 @@
 export interface IContent {
-  id: string; // Adicionaremos um ID para identificar cada um
+  id?: string; // Adicionaremos um ID para identificar cada um
   title: string;
   content: string;
   url?: string;

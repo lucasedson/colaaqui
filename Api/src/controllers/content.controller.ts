@@ -5,7 +5,9 @@ class ContentController {
   // POST /contents - Método que já tínhamos
   static async create(req: Request, res: Response) {
     // ... (lógica existente)
-    return res.status(200).json({ message: 'Controller de Conteúdo funcionando!' });
+    const content = req.body;
+    const newContent = await ContentService.create(content);
+    return res.status(201).json(newContent);
   }
 
   // GET /contents - Novo método

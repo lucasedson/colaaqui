@@ -38,12 +38,13 @@ const mockContents: IContent[] = [
 ];
 
 class ContentService {
-  /**
-   * Busca todos os conteúdos.
-   * Por enquanto, retorna a lista de mocks.
-   * Usamos async/Promise para simular uma chamada real ao banco,
-   * assim nosso Controller não precisará mudar no futuro.
-   */
+  static async create(content: IContent): Promise<IContent> {
+    console.log('Criando um novo conteúdo no serviço...');
+    content.id = 'abc123';
+    mockContents.push(content);
+    return Promise.resolve(content);
+  }
+
   static async findAll(page?: number, limit?: number): Promise<IContent[]> {
     if (!limit) {
       limit = 10;
